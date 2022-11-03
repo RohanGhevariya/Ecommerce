@@ -34,7 +34,12 @@ const Signup = () => {
             />
 
             <CustomTextInput
-                placeholder='Enter Email Id'
+                placeholder='Enter Mobile Phone Number'
+                icon={require('../images/mobile.png')}
+            />
+
+            <CustomTextInput
+                placeholder='Enter Email Address'
                 icon={require('../images/email.png')}
             />
 
@@ -57,7 +62,7 @@ const Signup = () => {
                     marginTop: 20,
                     textDecorationLine: 'underline',
                 }} onPress={() => {
-                    navigation.navigate('Login')
+                    navigation.goBack();
                 }}
             >Already have an account?</Text>
         </View>
