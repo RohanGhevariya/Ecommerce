@@ -21,6 +21,8 @@ export default function CommonButton({ onPress, title, bgColor, textColor }) {
         >
             <Text style={{
                 color: textColor,
+                fontSize:20,
+                fontWeight:'600'
             }}
             >{title}</Text>
         </TouchableOpacity>

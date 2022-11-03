@@ -1,6 +1,5 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
-import { TextInput } from 'react-native-gesture-handler';
 import CustomTextInput from '../Common/CustomTextInput';
 import CommonButton from '../Common/CommonButton';
 import { useNavigation } from '@react-navigation/native';
