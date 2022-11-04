@@ -70,7 +70,7 @@ const Signup = () => {
                     width: 60,
                     height: 60,
                     alignSelf: 'center',
-                    marginTop: 50
+                    marginTop: 60
                 }}
             />
             <Text
