@@ -29,7 +29,7 @@ const Home = () => {
                     flexDirection: 'row',
                     justifyContent: 'space-evenly',
                     alignItems: 'center',
-                    backgroundColor: '#ebedf0',
+                    backgroundColor: '#fff',
                     elevation: 5,
                 }}>
                 <TouchableOpacity
