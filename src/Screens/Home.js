@@ -5,9 +5,14 @@ import Main from '../bottom/Main';
 import Cart from '../bottom/Cart';
 import Profile from '../bottom/Profile';
 import Search from '../bottom/Search';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
+
     const [selectedTab, setSelectedTab] = useState(0);
+
+    const data = useSelector(state => state);
+
     return (
         <View style={{ flex: 1 }}>
             {selectedTab == 0 ? (
@@ -48,7 +53,7 @@ const Home = () => {
                         style={{
                             width: 30,
                             height: 30,
-                            tintColor:selectedTab==0?'#000': '#BeBeBe'
+                            tintColor: selectedTab == 0 ? '#000' : '#BeBeBe'
                         }}
                     />
                 </TouchableOpacity>
@@ -69,7 +74,7 @@ const Home = () => {
                         style={{
                             width: 30,
                             height: 30,
-                            tintColor:selectedTab==1?'#000': '#BeBeBe'
+                            tintColor: selectedTab == 1 ? '#000' : '#BeBeBe'
                         }}
                     />
                 </TouchableOpacity>
@@ -90,9 +95,28 @@ const Home = () => {
                         style={{
                             width: 30,
                             height: 30,
-                            tintColor:selectedTab==2?'#000': '#BeBeBe'
+                            tintColor: selectedTab == 2 ? '#000' : '#BeBeBe'
                         }}
                     />
+
+                    <View
+                        style={{
+                            width: 20,
+                            height: 20,
+                            backgroundColor: '#000',
+                            borderRadius: 7,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            position: 'absolute',
+                            top: 5,
+                            left: 5
+                        }}>
+                        <Text
+                            style={{
+                                color: '#fff',
+                                fontWeight: '600',
+                            }}>{data.length}</Text>
+                    </View>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -102,7 +126,7 @@ const Home = () => {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
-                    onPress={()=>{
+                    onPress={() => {
                         setSelectedTab(3);
                     }}
                 >
@@ -111,7 +135,7 @@ const Home = () => {
                         style={{
                             width: 30,
                             height: 30,
-                            tintColor:selectedTab==3?'#000': '#BeBeBe'
+                            tintColor: selectedTab == 3 ? '#000' : '#BeBeBe'
                         }}
                     />
                 </TouchableOpacity>

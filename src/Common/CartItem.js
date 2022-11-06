@@ -1,13 +1,13 @@
 import { View, TouchableOpacity, Image, Text } from 'react-native'
 import React from 'react'
 
-const ProductItem = ({ item, onAddToCart }) => {
+const CartItem = ({ item, OnRemoveItem }) => {
     return (
         <TouchableOpacity
             style={{
                 height: 190,
                 marginTop: 5,
-                width: 200,
+                width: '94%',
                 borderRadius: 20,
                 elevation: 5,
                 justifyContent: 'center',
@@ -62,10 +62,10 @@ const ProductItem = ({ item, onAddToCart }) => {
                             marginRight: 15,
                         }}
                         onPress={() => {
-                            onAddToCart(item)
+                            OnRemoveItem();
                         }}
                     >
-                        <Text style={{ color: '#000' }}>Add to Cart</Text>
+                        <Text style={{ color: '#000' }}>Remove Item</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -73,4 +73,4 @@ const ProductItem = ({ item, onAddToCart }) => {
     )
 }
 
-export default ProductItem
+export default CartItem

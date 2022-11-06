@@ -3,8 +3,11 @@ import React, { useEffect, useState } from 'react'
 import Header from '../Common/Header'
 import { Products } from '../Products'
 import ProductItem from '../Common/ProductItem'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItemToCart } from '../redux/actions/Actions'
 
 const Main = () => {
+    const dispatch = useDispatch();
     const [categoryList, setcategoryList] = useState([]);
     const [HatchbackList, setHatchbackList] = useState([]);
     const [SedanList, setSedanList] = useState([]);
@@ -20,6 +23,10 @@ const Main = () => {
         setcategoryList(categories);
         console.log(JSON.stringify(Products.category[1]));
     }, []);
+
+    // const items = useSelector(state => state);
+    // console.log(items);
+
     return (
         <ScrollView style={{
             flex: 1,
@@ -89,7 +96,9 @@ const Main = () => {
                         showsHorizontalScrollIndicator={false}
                         data={HatchbackList}
                         renderItem={({ item, index }) => {
-                            return <ProductItem item={item} />;
+                            return <ProductItem item={item} onAddToCart={(x) => {
+                                dispatch(addItemToCart(x));
+                            }} />;
                         }}
                     />
                 </View>
@@ -111,7 +120,9 @@ const Main = () => {
                         showsHorizontalScrollIndicator={false}
                         data={SedanList}
                         renderItem={({ item, index }) => {
-                            return <ProductItem item={item} />;
+                            return <ProductItem item={item} onAddToCart={(x) => {
+                                dispatch(addItemToCart(x));
+                            }} />;
                         }}
                     />
                 </View>
@@ -133,7 +144,9 @@ const Main = () => {
                         showsHorizontalScrollIndicator={false}
                         data={SUVList}
                         renderItem={({ item, index }) => {
-                            return <ProductItem item={item} />;
+                            return <ProductItem item={item} onAddToCart={(x) => {
+                                dispatch(addItemToCart(x));
+                            }} />;
                         }}
                     />
                 </View>
