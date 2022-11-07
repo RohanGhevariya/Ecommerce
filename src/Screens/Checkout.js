@@ -1,10 +1,18 @@
-import { View, Text, FlatList, Image } from 'react-native'
-import React from 'react'
-import { useSelector } from 'react-redux';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import CustomButton from '../Common/CommonButton';
+import { useNavigation } from '@react-navigation/native';
+import { addOrder } from '../redux/actions/Actions';
 
 const Checkout = () => {
     const cartData = useSelector(state => state.reducers);
+    const addressList = useSelector(state => state.AddressReducers);
+    const [selectedAddress, setSelectedAddress] = useState('');
+    const navigation = useNavigation();
+    const dispatch=useDispatch();
+
     const getTotal = () => {
         let tempTotal = 0;
         cartData.map((item) => {
@@ -78,6 +86,76 @@ const Checkout = () => {
                     }}
                     >{'$ ' + getTotal()}</Text>
                 </View>
+                <View>
+                    <FlatList
+                        data={addressList}
+                        renderItem={({ item, index }) => {
+                            return (
+                                <View
+                                    style={{
+                                        width: '100%',
+                                        borderWidth: 0.2,
+                                        alignSelf: 'center',
+                                        justifyContent: 'space-between',
+                                        flexDirection: 'row',
+                                        alignItems: 'center'
+                                    }}>
+                                    <View>
+                                        <Text
+                                            style={{
+                                                marginLeft: 20
+                                            }}
+                                        >{'City: ' + item.city}</Text>
+                                        <Text
+                                            style={{
+                                                marginLeft: 20
+                                            }}
+                                        >{'Street: ' + item.building}</Text>
+                                        <Text
+                                            style={{
+                                                marginLeft: 20
+                                            }}
+                                        >{'Pincode: ' + item.pin}</Text>
+                                    </View>
+                                    <TouchableOpacity
+                                        style={{
+                                            borderWidth: 0.2,
+                                            padding: 7,
+                                            marginRight: 20
+                                        }}
+                                        onPress={() => {
+                                            setSelectedAddress(
+                                                'Street: ' + item.building + ' ' +
+                                                ',City: ' + item.city + ' ' +
+                                                ',Pinode: ' + item.pin,
+                                            );
+                                        }} >
+                                        <Text>Select Address</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            );
+                        }} />
+                </View>
+                <Text style={{ margin: 20, fontSize: 18 }}>Select Address</Text>
+                <Text style={{ marginLeft: 20, fontSize: 16 }}>
+                    {selectedAddress == ''
+                        ? 'Please Select Address From Above List'
+                        : selectedAddress}
+                </Text>
+                <CustomButton
+                    bgColor={'#000'}
+                    textColor={'#fff'}
+                    title={'Place Order'}
+                    onPress={()=>{
+                        dispatch(
+                            addOrder({
+                                items:cartData,
+                                total: getTotal(),
+                                address:selectedAddress,
+                            })),
+                        navigation.navigate('OrderSucess');
+                    }}
+                />
             </View>
         </SafeAreaView>
     )

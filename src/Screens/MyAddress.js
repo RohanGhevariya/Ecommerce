@@ -4,6 +4,7 @@ import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation, useIsFocused } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteAddress } from '../redux/actions/Actions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 let addressList = [];
 
@@ -14,11 +15,14 @@ const MyAddress = () => {
     const dispatch= useDispatch();
     //console.log(addressList);
     return (
-        <View style={{ flex: 1 }}>
+        <SafeAreaView style={{
+            flex:1
+        }}>
+            <View style={{ flex: 1 }}>
             <View
                 style={{
                     width: '100%',
-                    height: 150,
+                    height: 70,
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     flexDirection: 'row',
@@ -94,6 +98,7 @@ const MyAddress = () => {
                 }}
             />
         </View>
+        </SafeAreaView>
     )
 }
 

@@ -9,7 +9,8 @@ import Home from './Screens/Home';
 import MyAddress from './Screens/MyAddress';
 import AddAddress from './Screens/AddAddress';
 import Checkout from './Screens/Checkout';
-
+import OrderSucess from './Screens/OrderSucess';
+import Orders from './Screens/Orders';
 const Stack = createStackNavigator();
 
 const AppNavigator = () => {
@@ -43,7 +44,6 @@ const AppNavigator = () => {
                     name="MyAddress"
                     component={MyAddress}
                 />
-
                 <Stack.Screen
                     options={{ headerShown: false }}
                     name="AddAddress"
@@ -54,6 +54,18 @@ const AppNavigator = () => {
                     options={{ headerShown: false }}
                     name="Checkout"
                     component={Checkout}
+                />
+
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="OrderSucess"
+                    component={OrderSucess}
+                />
+
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="Orders"
+                    component={Orders}
                 />
 
             </Stack.Navigator>

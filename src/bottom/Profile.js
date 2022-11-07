@@ -77,7 +77,7 @@ const Profile = () => {
           marginTop: 20,
           borderBottomColor: '#8e8e8e'
         }}
-        onPress={()=>{
+        onPress={() => {
           navigation.navigate('MyAddress');
         }}
       >
@@ -97,6 +97,10 @@ const Profile = () => {
           marginLeft: 20,
           marginTop: 20,
           borderBottomColor: '#8e8e8e'
+
+        }}
+        onPress={() => {
+          navigation.navigate('Orders');
         }}
       >
         <Text
