@@ -28,7 +28,7 @@ const Home = () => {
             <View
                 style={{
                     position: 'absolute',
-                    bottom: 10,
+                    bottom: 1,
                     width: '100%',
                     height: 70,
                     flexDirection: 'row',

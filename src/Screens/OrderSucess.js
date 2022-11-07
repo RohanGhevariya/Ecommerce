@@ -36,7 +36,7 @@ const OrderSucess = () => {
                 alignItems:'center',
                 borderWidth:0.6,
             }}onPress={()=>
-            navigation.navigate('Home')}>
+            navigation.navigate('Orders')}>
                 <Text>Go Back</Text>
             </TouchableOpacity>
         </View>

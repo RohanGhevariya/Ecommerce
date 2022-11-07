@@ -8,7 +8,7 @@ const Header = () => {
             style={{
                 width: '100%',
                 height: 100,
-                justifyContent: 'space-between',
+                justifyContent:'center',
                 alignItems: 'center',
                 flexDirection: 'row',
                 borderBottomWidth: 0.2,
@@ -20,30 +20,12 @@ const Header = () => {
                     fontWeight: '600',
                     fontSize: 20,
                     color: '#000',
-                    marginLeft: 30,
-                    marginTop: 30
+                    marginTop: 30,
+                    alignItems:'center'
                 }}
             >
                 Ecommerce
             </Text>
-            <View 
-                style={{ 
-                    flexDirection:'row',
-                }}
-            >
-                <TouchableOpacity 
-                style={{
-                    marginRight:50,
-                    justifyContent:'center',
-                    alignItems:'center',
-                    width:30,
-                    height:30,
-                }}
-                >
-                    <Text>Mode</Text>
-                </TouchableOpacity>
-
-            </View>
         </View>
     )
 }

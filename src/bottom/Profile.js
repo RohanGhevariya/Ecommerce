@@ -86,7 +86,7 @@ const Profile = () => {
             fontSize: 20,
             fontWeight: '600',
           }}
-        >My Address</Text>
+        >Address</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -109,26 +109,9 @@ const Profile = () => {
             fontWeight: '600',
           }}
         >
-          My Orders</Text>
+          Orders</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={{
-          width: '90%%',
-          height: 50,
-          borderBottomWidth: .3,
-          marginLeft: 20,
-          marginTop: 20,
-          borderBottomColor: '#8e8e8e'
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 20,
-            fontWeight: '600',
-          }}
-        >Offers</Text>
-      </TouchableOpacity>
     </View>
   )
 }

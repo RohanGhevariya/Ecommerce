@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
+import { View, Text, Image, TouchableOpacity, FlatList, ScrollView, TextInput } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from '../Common/Header'
 import { Products } from '../Products'
@@ -30,11 +30,40 @@ const Main = () => {
     return (
         <ScrollView style={{
             flex: 1,
-            backgroundColor: '#fff'
+            backgroundColor: '#fff',
+            height: 400
         }}>
             <View
                 style={{ flex: 1 }}>
                 <Header />
+
+                <View style={{
+                    backgroundColor: "#ebe9e4",
+                    paddingVertical: 8,
+                    paddingHorizontal: 10,
+                    marginHorizontal: 10,
+                    borderRadius: 15,
+                    marginTop: 10,
+                    flexDirection: "row",
+                    alignItems: "center",
+                }} >
+                    <TextInput
+                        placeholder="Search"
+                        placeholderTextColor="#000"
+                        style={{
+                            fontWeight: '600',
+                            fontSize: 18,
+                            width: '94%'
+                        }}
+                    />
+                    <Image
+                        source={require('../images/search.png')}
+                        style={{ height: 20, width: 20, }}
+                    >
+                    </Image>
+                </View>
+
+
                 <Image
                     source={require('../images/banner.jpeg')}
                     style={{
