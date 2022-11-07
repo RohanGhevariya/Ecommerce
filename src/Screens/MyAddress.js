@@ -12,92 +12,127 @@ const MyAddress = () => {
     const navigation = useNavigation();
     const isFocused = useIsFocused();
     const addressList = useSelector(state => state.AddressReducers);
-    const dispatch= useDispatch();
+    const dispatch = useDispatch();
     //console.log(addressList);
     return (
         <SafeAreaView style={{
-            flex:1
+            flex: 1
         }}>
             <View style={{ flex: 1 }}>
-            <View
-                style={{
-                    width: '100%',
-                    height: 70,
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    flexDirection: 'row',
-                }}>
-                <Text
+                <View
                     style={{
-                        fontWeight: '600',
-                        fontSize: 18,
-                        marginLeft: 25,
-                    }}
-                >My Address</Text>
-                <TouchableOpacity
-                    style={{
-                        marginRight: 30,
-                        justifyContent: 'center',
+                        width: '100%',
+                        height: 70,
+                        justifyContent: 'space-between',
                         alignItems: 'center',
-                        borderWidth: .2,
-                        padding: 7,
-                        borderRadius: 10,
-                    }}
-                    onPress={() => {
-                        navigation.navigate('AddAddress');
-                    }}
-                >
-                    <Text>Add Address</Text>
-                </TouchableOpacity>
-            </View>
-            <FlatList
-                data={addressList}
-                renderItem={({ item, index }) => {
-                    return (
-                        <View
+                        flexDirection: 'row',
+                    }}>
+                    <TouchableOpacity
+                        style={{
+                            width:50,
+                            marginLeft: 30,
+                            justifyContent: 'center',
+                            alignItems:'flex-start',
+                            borderWidth: .2,
+                            padding: 7,
+                            borderRadius: 10,
+                            backgroundColor:'#ebe9e4'
+                        }}
+                        onPress={() => {
+                            navigation.goBack();
+                        }}
+                    >
+                        <Image source={require('../images/back.png')}
                             style={{
-                                width: '100%',
-                                borderWidth: 0.2,
-                                alignSelf: 'center',
-                                justifyContent: 'space-between',
-                                flexDirection: 'row',
-                                alignItems: 'center'
-                            }}>
-                            <View>
-                                <Text
-                                    style={{
-                                        marginLeft: 20
-                                    }}
-                                >{'City: ' + item.city}</Text>
-                                <Text
-                                    style={{
-                                        marginLeft: 20
-                                    }}
-                                >{'Street: ' + item.building}</Text>
-                                <Text
-                                    style={{
-                                        marginLeft: 20
-                                    }}
-                                >{'Pincode: ' + item.pin}</Text>
-                            </View>
-                            <TouchableOpacity 
+                                width: 24,
+                                height: 24,
+                            }} />
+                    </TouchableOpacity>
+                </View>
+                <View
+                    style={{
+                        width: '100%',
+                        height: 50,
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                    }}>
+                    <Text
+                        style={{
+                            fontWeight: '600',
+                            fontSize: 18,
+                            marginLeft: 25,
+                        }}
+                    >My Address</Text>
+                    <TouchableOpacity
+                        style={{
+                            marginRight: 30,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderWidth: 0.5,
+                            padding: 7,
+                            borderRadius: 5,
+                            backgroundColor:'#ebe9e4'
+                        }}
+                        onPress={() => {
+                            navigation.navigate('AddAddress');
+                        }}
+                    >
+                        <Text 
                             style={{
-                                borderWidth:.2, 
-                                padding:7,
-                                marginRight:20
+                                fontWeight:'600'
                             }}
-                            onPress={()=>{
-                                dispatch(deleteAddress(index));
-                            }}
-                            >
-                                <Text>Delete</Text>
-                            </TouchableOpacity>
+                        >Add Address</Text>
+                    </TouchableOpacity>
+                </View>
+                <FlatList
+                    data={addressList}
+                    renderItem={({ item, index }) => {
+                        return (
+                            <View
+                                style={{
+                                    width: '100%',
+                                    borderWidth: 0.2,
+                                    alignSelf: 'center',
+                                    justifyContent: 'space-between',
+                                    flexDirection: 'row',
+                                    alignItems: 'center'
+                                }}>
+                                <View>
+                                    <Text
+                                        style={{
+                                            marginLeft: 20
+                                        }}
+                                    >{'City: ' + item.city}</Text>
+                                    <Text
+                                        style={{
+                                            marginLeft: 20
+                                        }}
+                                    >{'Street: ' + item.building}</Text>
+                                    <Text
+                                        style={{
+                                            marginLeft: 20
+                                        }}
+                                    >{'Pincode: ' + item.pin}</Text>
+                                </View>
+                                <TouchableOpacity
+                                    style={{
+                                        borderWidth: .2,
+                                        padding: 7,
+                                        marginRight: 20
+                                    }}
+                                    onPress={() => {
+                                        dispatch(deleteAddress(index));
+                                    }}
+                                >
+                                    <Text>Delete</Text>
+                                </TouchableOpacity>
 
-                        </View>
-                    );
-                }}
-            />
-        </View>
+                            </View>
+                        );
+                    }}
+                />
+            </View>
         </SafeAreaView>
     )
 }

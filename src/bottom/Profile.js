@@ -12,6 +12,11 @@ const Profile = () => {
   const getData = async () => {
     name = await AsyncStorage.getItem('NAME');
   }
+
+  const logOutUser = async () => {
+    //window.localStorage.clear();
+    navigation.navigate('Login');
+  }
   return (
     <View
       style={{
@@ -110,6 +115,29 @@ const Profile = () => {
           }}
         >
           Orders</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={{
+          width: '90%%',
+          height: 50,
+          borderBottomWidth: .3,
+          marginLeft: 20,
+          marginTop: 20,
+          borderBottomColor: '#8e8e8e'
+
+        }}
+        onPress={() => {
+          logOutUser();
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 20,
+            fontWeight: '600',
+          }}
+        >
+          Log Out</Text>
       </TouchableOpacity>
 
     </View>
