@@ -115,7 +115,7 @@ const Home = () => {
                             style={{
                                 color: '#fff',
                                 fontWeight: '600',
-                            }}>{data.length}</Text>
+                            }}>{data.reducers.length}</Text>
                     </View>
                 </TouchableOpacity>
 

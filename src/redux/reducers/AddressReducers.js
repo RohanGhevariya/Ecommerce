@@ -1,10 +1,10 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from "../ActionTypes";
+import { ADD_ADDRESS, DELETE_ADDRESS } from "../ActionTypes";
 
-export const reducers = (state = [], action) => {
+export const AddressReducers = (state = [], action) => {
     switch (action.type) {
-        case ADD_TO_CART:
+        case ADD_ADDRESS:
             return [...state, action.payload];
-        case REMOVE_FROM_CART:
+        case DELETE_ADDRESS:
             const deteletedArray = state.filter((item, index) => {
                 return index !== action.payload;
             });
