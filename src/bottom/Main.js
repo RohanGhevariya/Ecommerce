@@ -21,7 +21,7 @@ const Main = () => {
         setSedanList(Products.category[1].data);
         setSUVList(Products.category[2].data);
         setcategoryList(categories);
-        console.log(JSON.stringify(Products.category[1]));
+        //console.log(JSON.stringify(Products.category[1]));
     }, []);
 
     // const items = useSelector(state => state);

@@ -5,11 +5,13 @@ import CartItem from '../Common/CartItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart } from '../redux/actions/Actions';
 import CommonButton from '../Common/CommonButton';
+import { useNavigation } from '@react-navigation/native';
 
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
   const cartData = useSelector(state => state.reducers);
   const dispatch = useDispatch();
+  const navigation=useNavigation();
   return (
     <View
       style={{
@@ -49,6 +51,9 @@ const Cart = () => {
                   bgColor={'#000'}
                   textColor={'#fff'}
                     title={'Checkout'}
+                    onPress={()=>{
+                      navigation.navigate('Checkout');
+                    }}
                   />
                 </View>
       ):null}

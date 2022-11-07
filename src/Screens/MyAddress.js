@@ -12,7 +12,7 @@ const MyAddress = () => {
     const isFocused = useIsFocused();
     const addressList = useSelector(state => state.AddressReducers);
     const dispatch= useDispatch();
-    console.log(addressList);
+    //console.log(addressList);
     return (
         <View style={{ flex: 1 }}>
             <View

@@ -8,6 +8,7 @@ import Signup from './Screens/Signup';
 import Home from './Screens/Home';
 import MyAddress from './Screens/MyAddress';
 import AddAddress from './Screens/AddAddress';
+import Checkout from './Screens/Checkout';
 
 const Stack = createStackNavigator();
 
@@ -47,6 +48,12 @@ const AppNavigator = () => {
                     options={{ headerShown: false }}
                     name="AddAddress"
                     component={AddAddress}
+                />
+
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="Checkout"
+                    component={Checkout}
                 />
 
             </Stack.Navigator>
