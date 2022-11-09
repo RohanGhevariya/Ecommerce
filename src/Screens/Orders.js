@@ -40,6 +40,7 @@ const Orders = () => {
                             }} />
                     </TouchableOpacity>
                 </View>
+                {orders.length > 0 ? (
         <FlatList
           data={orders}
           renderItem={({ item, index }) => {
@@ -86,6 +87,18 @@ const Orders = () => {
             );
           }}
         />
+        ) : (
+          <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
+              <Text>
+                No order placed.
+              </Text>
+            </View>
+          )}
       </View>
     </SafeAreaView>
   );
