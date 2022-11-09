@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import{Icon} from "react-native-vector-icons";
 import { FloatingAction } from "react-native-floating-action";
 
-const Orders =({navigation}) =>{
+const AdminOrders =({navigation}) =>{
 
     return(
         <View style={{
@@ -426,4 +426,4 @@ const Orders =({navigation}) =>{
         </View>
     )
 }
-export default Orders;
+export default AdminOrders;

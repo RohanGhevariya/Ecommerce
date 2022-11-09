@@ -5,7 +5,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import {useForm, Controller} from 'react-hook-form';
 import * as ImagePicker from 'expo-image-picker';
 import { addDoc, collection, doc, setDoc,onValue,ref, QuerySnapshot} from "firebase/firestore"; 
-import { db } from "../../firebase";
+import { db } from "../../../firebase";
 
 const Products =() =>{
   const [Pimage, setImage] = useState('');

@@ -3,7 +3,7 @@ import { View,Text,Image,ImageBackground,Button } from "react-native";
 import { TextInput,ScrollView,TouchableOpacity } from "react-native-gesture-handler";
 import {LinearGradient} from 'expo-linear-gradient';
 
-const Home =({navigation}) =>{
+const AdminHome =({navigation}) =>{
     return(
         <View style={{
         backgroundColor:'#eff3ff',
@@ -352,4 +352,4 @@ const Home =({navigation}) =>{
         </View>
     )
 }
-export default Home;
+export default AdminHome;

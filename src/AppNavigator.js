@@ -11,11 +11,92 @@ import AddAddress from './Screens/AddAddress';
 import Checkout from './Screens/Checkout';
 import OrderSucess from './Screens/OrderSucess';
 import Orders from './Screens/Orders';
-const Stack = createStackNavigator();
+import AdminHome from './Screens/Admin/AdminHome';
+// import AdminOrders from './Screens/Admin/AdminOrders';
+// import Categories from './Screens/Admin/AdminCategories';
+// import Products from './Screens/Admin/Products';
+// import States from './Screens/Admin/AdminStates';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Image } from 'react-native';
 
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 const AppNavigator = () => {
     return (
         <NavigationContainer>
+            {/* <Tab.Navigator >
+             <Tab.Screen
+              name="Home"
+              component={AdminHome}
+              options={{
+                tabBarLabel:({})=>(
+                  <Text style={{marginTop:10,fontWeight:"bold"}}>Home</Text>
+                ),
+                tabBarIcon:({color,size}) => (
+                    <Image
+                        source={require("../assets/home.png")}
+                        style={{height:30, width:30,marginTop:15}}
+                        />
+                )
+              }} />
+              <Tab.Screen
+              name="Categories"
+              component={Categories}
+              options={{
+                tabBarLabel:({})=>(
+                  <Text style={{marginTop:10,fontWeight:"bold"}}>Categories</Text>
+                ),
+                tabBarIcon:({color,size}) => (
+                    <Image
+                        source={require("../assets/categories.png")}
+                        style={{height:30, width:30,marginTop:15}}
+                        />
+                )
+              }} />
+             <Tab.Screen
+              name="Orders"
+              component={AdminOrders}
+              options={{
+                tabBarLabel:({})=>(
+                  <Text style={{marginTop:10,fontWeight:"bold"}}>Orders</Text>
+                ),
+                tabBarIcon:({color,size}) => (
+                    <Image
+                        source={require("../assets/distributed.png")}
+                        style={{height:30, width:30,marginTop:15}}
+                        />
+                )
+              }} />
+              <Tab.Screen
+              name="Products"
+              component={Products}
+              options={{
+                tabBarLabel:({})=>(
+                  <Text style={{marginTop:10,fontWeight:"bold"}}>Products</Text>
+                ),
+                tabBarIcon:({color,size}) => (
+                    <Image
+                        source={require("../assets/sent.png")}
+                        style={{height:30, width:30,marginTop:15}}
+                        />
+                )
+              }} />
+               <Tab.Screen
+              name="States"
+              component={States}
+              options={{
+               
+                tabBarIcon:({color,size}) => (
+                    <Image
+                        source={require("../assets/stats.png")}
+                        style={{height:30, width:30,marginTop:30,marginBottom:2}}
+                        />
+                        
+                ), tabBarLabel:({})=>(
+                  <Text style={{marginTop:30,fontWeight:"bold"}}>States</Text>
+                ),
+              }} />
+        </Tab.Navigator> */}
             <Stack.Navigator>
 
                 <Stack.Screen
