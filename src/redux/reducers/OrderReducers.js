@@ -1,0 +1,16 @@
+import { ADD_ORDER, DELETE_ORDER } from "../ActionTypes";
+
+export const OrderReducers = (state = [], action) => {
+    switch (action.type) {
+        case ADD_ORDER:
+            return [...state, action.payload];
+        case DELETE_ORDER:
+            const deteletedArray = state.filter((item, index) => {
+                return index !== action.payload;
+            });
+            return deteletedArray;
+
+        default:
+            return state;
+    }
+}
