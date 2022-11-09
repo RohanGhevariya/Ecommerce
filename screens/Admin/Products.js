@@ -4,12 +4,31 @@ import { TouchableOpacity,ScrollView } from "react-native-gesture-handler";
 import DropDownPicker from "react-native-dropdown-picker";
 import {useForm, Controller} from 'react-hook-form';
 import * as ImagePicker from 'expo-image-picker';
-import MultipleImagePicker from '@baronha/react-native-multiple-image-picker';
+import { addDoc, collection, doc, setDoc,onValue,ref, QuerySnapshot} from "firebase/firestore"; 
+import { db } from "../../firebase";
 
 const Products =() =>{
-  const [image, setImage] = useState(null);
+  const [Pimage, setImage] = useState('');
+  //const[Pid,setID] = useState('');
+  const[Pname,setPname] = useState(''); 
+  const[Pcategory,setCategory] = useState('');
+  const[Price,setPrice] = useState('');
+
+  function add(){
+    addDoc(collection(db, "Products"), {
+     // Pid: Pid,
+      Pname: Pname,
+      Price: Price,
+      Pcategory:Pcategory,
+      Pimage:Pimage
+    }).then(()=>{
+      //console.log('data added');
+
+    }).catch((error) =>{
+      //console.log(error);
+    });
+  }
   const clickHandler = () => {
-    //function to handle click on floating Action Button
     alert("Product Added");
   }
   const pickImage = async () => {
@@ -31,7 +50,16 @@ const Products =() =>{
       const onSubmit = (data) => {
         console.log(data, "data");
       };
-    return(
+      function resetInput()
+          {
+              setPname({value:''})
+              setPrice({value:''})
+              setCategory({value:''})
+              //setImage({value:''})
+              add()
+              clickHandler()
+          } 
+  return(
         <SafeAreaView style={styles.container}>
         <View style={styles.container}>
             <ScrollView>
@@ -42,10 +70,9 @@ const Products =() =>{
         control={control}
         render={({ field: { onChange, value } }) => (
           <TextInput
+            value={Pname} onChangeText ={(Pname)=> {setPname(Pname)}}
             style={styles.input}
             selectionColor={"#5188E3"}
-            onChangeText={onChange}
-            value={value}
           />
         )}
       />
@@ -57,10 +84,9 @@ const Products =() =>{
         control={control}
         render={({ field: { onChange, value } }) => (
           <TextInput
-            style={styles.input}
-            selectionColor={"#5188E3"}
-            onChangeText={onChange}
-            value={value}
+          value={Price} onChangeText ={(Price)=> {setPrice(Price)}}
+          style={styles.input}
+          selectionColor={"#5188E3"}
           />
         )}
       />
@@ -72,10 +98,9 @@ const Products =() =>{
         control={control}
         render={({ field: { onChange, value } }) => (
           <TextInput
-            style={styles.input}
-            selectionColor={"#5188E3"}
-            onChangeText={onChange}
-            value={value}
+          value={Pcategory} onChangeText ={(Pcategory)=> {setCategory(Pcategory)}}
+          style={styles.input}
+          selectionColor={"#5188E3"}
           />
         )}
       />
@@ -85,7 +110,7 @@ const Products =() =>{
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button title="Add Image" onPress={pickImage} />
       <View style={{backgroundColor:"#000"} }>
-      {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+      {Pimage && <Image source={{ uri: Pimage }} style={{ width: 200, height: 200 }} />}
       </View>
     </View>
       </View>
@@ -98,7 +123,7 @@ const Products =() =>{
           </ScrollView>
           <Button title="Add Product"
           activeOpacity={0.7}
-          onPress={clickHandler}
+          onPress={resetInput}
           style={styles.touchableOpacityStyle}>
           <Image
             //We are making FAB using TouchableOpacity with an image
