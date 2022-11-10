@@ -13,8 +13,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [badEmail, setBadEmail] = useState(false);
     const [badPassword, setBadPassword] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false)
-
+    const [modalVisible, setModalVisible] = useState(false);
     const adminemail = 'Abc';
     const adminPass = 'Abc';
 
@@ -40,9 +39,10 @@ const Login = () => {
     const getData = async () => {
         const mEmail = await AsyncStorage.getItem('EMAIL');
         const mPass = await AsyncStorage.getItem('PASSWORD');
+
         if (adminemail === mEmail && mPass === adminPass) {
             setModalVisible(false);
-            navigation.navigate('OrderSucess');
+            navigation.navigate('AdminHome');
         }
         else if (email === mEmail && mPass === password) {
             setModalVisible(false);

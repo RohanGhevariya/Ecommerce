@@ -149,6 +149,12 @@ const AppNavigator = () => {
                     component={Orders}
                 />
 
+                <Stack.Screen
+                    options={{ headerShown: false }}
+                    name="AdminHome"
+                    component={AdminHome}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     )
