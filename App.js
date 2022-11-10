@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import React from "react";
+import ListScreen from "./src/screen/ListScreen";
+import AddProductScreen from './src/screen/AddProductScreen';
+import AddCategoryScreen from './src/screen/AddCategoryScreen';
+import SearchScreen from './src/screen/SearchScreen';
+import StatusScreen from './src/screen/StatusScreen';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function App() {
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Drawer.Navigator useLegacyImplementation>
+      <Drawer.Screen name="List" component={ListScreen} />
+      <Drawer.Screen name="AddCategory" component={AddCategoryScreen} />
+      <Drawer.Screen name="AddProduct" component={AddProductScreen} />
+      <Drawer.Screen name="Search" component={SearchScreen} />
+      <Drawer.Screen name="Status" component={StatusScreen} />
+    </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+  return (
+    <NavigationContainer>
+      <MyDrawer />
+    </NavigationContainer>
+  )
+}
+export default App
