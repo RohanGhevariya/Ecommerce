@@ -12,19 +12,18 @@ import Checkout from './Screens/Checkout';
 import OrderSucess from './Screens/OrderSucess';
 import Orders from './Screens/Orders';
 import AdminHome from './Screens/Admin/AdminHome';
-// import AdminOrders from './Screens/Admin/AdminOrders';
-// import Categories from './Screens/Admin/AdminCategories';
-// import Products from './Screens/Admin/Products';
-// import States from './Screens/Admin/AdminStates';
+import AdminOrders from './Screens/Admin/AdminOrders';
+import Categories from './Screens/Admin/AdminCategories';
+import Products from './Screens/Admin/Products';
+import States from './Screens/Admin/AdminStates';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Image } from 'react-native';
 
-const Stack = createStackNavigator();
+
 const Tab = createBottomTabNavigator();
-const AppNavigator = () => {
+const TabScreen = () => {
     return (
-        <NavigationContainer>
-            {/* <Tab.Navigator >
+            <Tab.Navigator >
              <Tab.Screen
               name="Home"
               component={AdminHome}
@@ -96,68 +95,73 @@ const AppNavigator = () => {
                   <Text style={{marginTop:30,fontWeight:"bold"}}>States</Text>
                 ),
               }} />
-        </Tab.Navigator> */}
-            <Stack.Navigator>
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="Splash"
-                    component={Splash} />
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="Login"
-                    component={Login} />
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="Signup"
-                    component={Signup} />
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="Home"
-                    component={Home}
-                />
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="MyAddress"
-                    component={MyAddress}
-                />
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="AddAddress"
-                    component={AddAddress}
-                />
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="Checkout"
-                    component={Checkout}
-                />
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="OrderSucess"
-                    component={OrderSucess}
-                />
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="Orders"
-                    component={Orders}
-                />
-
-                <Stack.Screen
-                    options={{ headerShown: false }}
-                    name="AdminHome"
-                    component={AdminHome}
-                />
-
-            </Stack.Navigator>
-        </NavigationContainer>
+        </Tab.Navigator>
     )
 }
 
-export default AppNavigator
+export default function AppNavigator(){
+    const Stack = createStackNavigator();
+    return(
+        <NavigationContainer>
+                        <Stack.Navigator>
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="Splash"
+    component={Splash} />
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="Login"
+    component={Login} />
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="Signup"
+    component={Signup} />
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="Home"
+    component={Home}
+/>
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="MyAddress"
+    component={MyAddress}
+/>
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="AddAddress"
+    component={AddAddress}
+/>
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="Checkout"
+    component={Checkout}
+/>
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="OrderSucess"
+    component={OrderSucess}
+/>
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="Orders"
+    component={Orders}
+/>
+
+<Stack.Screen
+    options={{ headerShown: false }}
+    name="AdminHome"
+    component={TabScreen}
+/>
+
+</Stack.Navigator>
+        </NavigationContainer>
+    )
+}
