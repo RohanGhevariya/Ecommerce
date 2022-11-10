@@ -4,6 +4,7 @@ import AppNavigator from './src/AppNavigator'
 import MainContainer from './src/MainContainer'
 import store from './src/redux/store/Store'
 import { Provider } from 'react-redux'
+import AdminAppNavigator from './src/Screens/AdminAppNavigator'
 
 const App = () => {
   return (
