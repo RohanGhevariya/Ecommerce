@@ -42,7 +42,7 @@ const Login = () => {
 
         if (adminemail === mEmail && mPass === adminPass) {
             setModalVisible(false);
-            navigation.navigate('AdminHome');
+            navigation.navigate('AddCategory');
         }
         else if (email === mEmail && mPass === password) {
             setModalVisible(false);
