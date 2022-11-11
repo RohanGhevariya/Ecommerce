@@ -9,11 +9,51 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
+import { addDoc, collection, doc, setDoc,onValue,ref, QuerySnapshot} from "firebase/firestore"; 
+import { db } from '../../firebase';
 
 const AddCategoryScreen = () => {
   const [data, setData] = useState([{name: 'Category 1'},{name: "Category 2"}]);
   const [category, setCategory] = useState('');
   const [index, setIndex] = useState(null);
+  function add(){
+    addDoc(collection(db, "Categories"), {
+      category:category,
+      
+    }).then(()=>{
+      //console.log('data added');
+
+    }).catch((error) =>{
+      //console.log(error);
+    });
+  }
+  function addCat(){
+    if (index === null) {
+      const newCategory = [...data, {name: category}];
+      setData(newCategory);
+      setCategory('');
+      add();
+     
+    } else {
+      const updateData = data.map((item, i) => {
+        if (i === index) {
+          return {
+            ...item,
+            name: category,
+          };
+          
+        } else {
+          return {
+            ...item,
+          };
+        }
+      });
+      setData(updateData);
+      setCategory('');
+      setIndex(null);
+    }
+  }
+
   return (
     <>
       <FlatList
@@ -56,29 +96,7 @@ const AddCategoryScreen = () => {
           style={styles.input}
         />
         <Button
-          onPress={() => {
-            if (index === null) {
-              const newCategory = [...data, {name: category}];
-              setData(newCategory);
-              setCategory('');
-            } else {
-              const updateData = data.map((item, i) => {
-                if (i === index) {
-                  return {
-                    ...item,
-                    name: category,
-                  };
-                } else {
-                  return {
-                    ...item,
-                  };
-                }
-              });
-              setData(updateData);
-              setCategory('');
-              setIndex(null);
-            }
-          }}
+          onPress={addCat}
           title="Add"
         />
       </View>

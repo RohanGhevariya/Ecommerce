@@ -11,6 +11,8 @@ import {
     Modal,
     StyleSheet
 } from 'react-native';
+import { addDoc, collection, doc, setDoc,onValue,ref, QuerySnapshot} from "firebase/firestore"; 
+import { db } from '../../firebase';
 import * as ImagePicker from 'expo-image-picker';
 
 const AddProductScreen = () => {
@@ -26,7 +28,7 @@ const AddProductScreen = () => {
         price: 10,
         category: 'Category 2',
     },]);
-    const [image, setImage] = useState('https://picsum.photos/200/300')
+    const [image, setImage] = useState('')
     const [price, setPrice] = useState("")
     const [name, setName] = useState("")
     const [category, setCategory] = useState("Select Category");
@@ -34,7 +36,20 @@ const AddProductScreen = () => {
     const [index, setIndex] = useState(null);
     const [open, setOpen] = useState(false)
     const catList = ["Cat 1", "Cat 2", "Cat 3"]
-
+    function add(){
+        addDoc(collection(db, "Products"), {
+         // Pid: Pid,
+          name: name,
+          price: price,
+          category:category,
+          image:image
+        }).then(()=>{
+          //console.log('data added');
+    
+        }).catch((error) =>{
+          //console.log(error);
+        });
+      }
     const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -50,6 +65,60 @@ const AddProductScreen = () => {
       setImage({uri :result.uri});
     }
   };
+  function AddData(){
+   
+    if (image.length === 0){
+        alert("Please Upload Image")
+    } else if (name.length === 0) {
+        alert("Please Enter Product Name")
+    } else if (price.length === 0) {
+        alert("Please Enter Product Price")
+    } else if (category.length === 0) {
+        alert("Please Enter Product Category")
+    } else {
+        setOpen(false)
+        if (index === null) {
+            const product = {
+                name: name,
+                price: price,
+                category: category,
+                image: image
+            }
+            const newCategory = [...data, product];
+            setData(newCategory);
+            setCategory('');
+            setName('')
+            setPrice('')
+            setImage('')
+            setIndex(null)
+            add();
+        } else {
+            
+            const updateData = data.map((item, i) => {
+                if (i === index) {
+                    return {
+                        ...item,
+                        name: name,
+                        price: price,
+                        category: category,
+                        image: image
+                    };
+                } else {
+                    return {
+                        ...item,
+                    };
+                }
+            });
+            setData(updateData);
+            setCategory('');
+            setName('')
+            setPrice('')
+            setImage('')
+            setIndex(null);
+            
+        }
+    }
+  }
     return (
         <>
             <FlatList
@@ -148,57 +217,7 @@ const AddProductScreen = () => {
                             })}
                             </View> }
                             <TouchableOpacity
-                                style={styles.addProductButton} onPress={() => {
-                                    if (image.length === 0){
-                                        alert("Please Upload Image")
-                                    } else if (name.length === 0) {
-                                        alert("Please Enter Product Name")
-                                    } else if (price.length === 0) {
-                                        alert("Please Enter Product Price")
-                                    } else if (category.length === 0) {
-                                        alert("Please Enter Product Category")
-                                    } else {
-                                        setOpen(false)
-                                        if (index === null) {
-                                            const product = {
-                                                name: name,
-                                                price: price,
-                                                category: category,
-                                                image: image
-                                            }
-                                            const newCategory = [...data, product];
-                                            setData(newCategory);
-                                            setCategory('');
-                                            setName('')
-                                            setPrice('')
-                                            setImage('')
-                                            setIndex(null)
-                                        } else {
-                                            const updateData = data.map((item, i) => {
-                                                if (i === index) {
-                                                    return {
-                                                        ...item,
-                                                        name: name,
-                                                        price: price,
-                                                        category: category,
-                                                        image: image
-                                                    };
-                                                } else {
-                                                    return {
-                                                        ...item,
-                                                    };
-                                                }
-                                            });
-                                            setData(updateData);
-                                            setCategory('');
-                                            setName('')
-                                            setPrice('')
-                                            setImage('')
-                                            setIndex(null);
-                                        }
-                                    }
-                                    
-                                }}>
+                                style={styles.addProductButton} onPress={AddData}>
                                 {/* <Button title='Add' onPress={() => setOpen(false)} /> */}
                                 <Text style={{ color: 'white' }}>Add Product</Text>
                             </TouchableOpacity>
