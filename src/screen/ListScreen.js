@@ -15,12 +15,7 @@ const ListScreen = () => {
                 price: 10,
                 category: 'Category 1',
             },
-            {
-                image: require('../assets/category.png'),
-                name: 'Product 2',
-                price: 10,
-                category: 'Category 2',
-            },]
+            ]
         }
     ])
     return (
