@@ -6,8 +6,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const OrderSucess = () => {
     const orders = useSelector(state => state.OrderReducers);
-    const navigation= useNavigation();
-    console.log(orders);
+    const navigation = useNavigation();
+    // console.log(orders);
     const route = useRoute();
     return (
         <View
@@ -25,19 +25,23 @@ const OrderSucess = () => {
             />
             <Text style={{
                 marginTop: 20,
-                fontSize: 20,
+                fontSize: 25,
+                fontWeight:'600'
             }}>Order Placed Successfully.</Text>
-            <TouchableOpacity 
-            style={{
-                width:200,
-                height:50,
-                marginTop:50,
-                justifyContent:'center',
-                alignItems:'center',
-                borderWidth:0.6,
-            }}onPress={()=>
-            navigation.navigate('Orders')}>
-                <Text>Go Back</Text>
+            <TouchableOpacity
+                style={{
+                    width: 200,
+                    height: 50,
+                    marginTop: 50,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderWidth: 0.6,
+                }} onPress={() =>
+                    navigation.navigate('Orders')}>
+                <Text style={{
+                    fontWeight:'600',
+                    fontSize:18
+                }} >Go to Orders</Text>
             </TouchableOpacity>
         </View>
     )

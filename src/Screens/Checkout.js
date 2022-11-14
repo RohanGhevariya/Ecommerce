@@ -1,17 +1,44 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import CustomButton from '../Common/CommonButton';
 import { useNavigation } from '@react-navigation/native';
 import { addOrder } from '../redux/actions/Actions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Checkout = () => {
     const cartData = useSelector(state => state.reducers);
     const addressList = useSelector(state => state.AddressReducers);
     const [selectedAddress, setSelectedAddress] = useState('');
     const navigation = useNavigation();
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
+
+    // const saveData = async () => {
+    //     let cname,cprice
+    //     cartData.map((item1) => {
+    //         cname = item1.name;
+    //         cprice = item1.tempTotal;
+    //     });
+    //     await AsyncStorage.setItem('NAME',cname);
+    //     await AsyncStorage.setItem('PRICE',cprice);
+    // }
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         getData();
+    //     }, 3000);
+    // }, [])
+
+    // const getData = async () => {
+    //     const email = await AsyncStorage.getItem('EMAIL');
+    //     if (email !== null) {
+    //         navigation.navigate('Home');
+    //     }
+    //     else {
+    //         navigation.navigate('Checkout');
+    //     }
+    // }
 
     const getTotal = () => {
         let tempTotal = 0;
@@ -76,6 +103,7 @@ const Checkout = () => {
                     marginTop: 30,
                     borderTopWidth: .5,
                     borderTopColor: '#8e8e8e',
+                    marginBottom: 10
                 }}>
                     <Text style={{
                         marginTop: 20
@@ -98,9 +126,12 @@ const Checkout = () => {
                                         alignSelf: 'center',
                                         justifyContent: 'space-between',
                                         flexDirection: 'row',
-                                        alignItems: 'center'
+                                        alignItems: 'center',
                                     }}>
-                                    <View>
+                                    <View style={{
+                                        marginTop: 10,
+                                        marginBottom: 10
+                                    }}>
                                         <Text
                                             style={{
                                                 marginLeft: 20
@@ -121,7 +152,7 @@ const Checkout = () => {
                                         style={{
                                             borderWidth: 0.2,
                                             padding: 7,
-                                            marginRight: 20
+                                            marginRight: 20,
                                         }}
                                         onPress={() => {
                                             setSelectedAddress(
@@ -136,23 +167,54 @@ const Checkout = () => {
                             );
                         }} />
                 </View>
-                <Text style={{ margin: 20, fontSize: 18 }}>Select Address</Text>
-                <Text style={{ marginLeft: 20, fontSize: 16 }}>
-                    {selectedAddress == ''
-                        ? 'Please Select Address From Above List'
-                        : selectedAddress}
-                </Text>
+                <View style={{
+                    width: '100%',
+                    alignSelf: 'center',
+                    justifyContent: 'space-between',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                }}>
+                    <Text style={{ margin: 20, fontSize: 18 }}>Selected Address</Text>
+                    <TouchableOpacity
+                        style={{
+                            borderWidth: 0.2,
+                            padding: 7,
+                            marginRight: 20,
+                        }}
+                        onPress={() => {
+                            navigation.navigate('AddAddress')
+                        }} >
+                        <Text>Add Address</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    paddingLeft: 20,
+                    paddingRight: 20,
+                    borderTopWidth: .5,
+                    borderTopColor: '#8e8e8e',
+                }}>
+                    <Text style={{ marginLeft: 20, fontSize: 16, marginTop: 10 }}>
+                        {selectedAddress == ''
+                            ? 'Please Select Address From Above List'
+                            : selectedAddress}
+                    </Text>
+                </View>
                 <CustomButton
                     bgColor={'#000'}
                     textColor={'#fff'}
                     title={'Place Order'}
-                    onPress={()=>{
+                    onPress={async () => {
+                        // saveData(),
                         dispatch(
                             addOrder({
-                                items:cartData,
+                                items: cartData,
                                 total: getTotal(),
-                                address:selectedAddress,
+                                address: selectedAddress,
                             })),
+                            //console.log(cartData);
                         navigation.navigate('OrderSucess');
                     }}
                 />
