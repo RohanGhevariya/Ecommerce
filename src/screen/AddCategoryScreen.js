@@ -17,9 +17,11 @@ const AddCategoryScreen = () => {
   const [data, setData] = useState([]);
   const [category, setCategory] = useState('');
   const [index, setIndex] = useState(null);
-  const add = async () => {
-    const jsonValue = JSON.stringify(data)
+  
+  const add = async (cate) => {
+    const jsonValue = JSON.stringify(cate)
     await AsyncStorage.setItem('Categories', jsonValue);
+    console.log("JSON",jsonValue)
   }
 
 
@@ -27,6 +29,7 @@ const AddCategoryScreen = () => {
     try {
       const value = await AsyncStorage.getItem('Categories')
       if(value !== null) {
+        setData(JSON.parse(value))
         console.log(value);
       }
     } catch(e) {
@@ -36,7 +39,7 @@ const AddCategoryScreen = () => {
   
   useEffect(()=>{
     getData();
-  },[setCategory])
+  },[])
 
   
   // function add(){
@@ -55,7 +58,7 @@ const AddCategoryScreen = () => {
       const newCategory = [...data, {name: category}];
       setData(newCategory);
       setCategory('');
-      add();
+      add(newCategory);
      
     } else {
       const updateData = data.map((item, i) => {

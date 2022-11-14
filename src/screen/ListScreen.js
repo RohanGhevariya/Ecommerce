@@ -1,58 +1,49 @@
 import React, { useState,useEffect } from "react";
 import { FlatList, View, Text, Image, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-let cat =''
+
 
 const ListScreen = () => {
-    
+    const [data, setData] = useState([
+        {
+            name: "Category",
+            items: []
+        },
+        {
+            name: "Products",
+            items: []
+        }
+    ])
     useEffect(() => {
       getData();
     }, [])
     const getData = async () => {
-      cat = await AsyncStorage.getItem('Categories');
+      const cat = await AsyncStorage.getItem('Categories');
+      setData(JSON.parse(cat))
     }
-    const [data, setData] = useState([
-        {
-            name: "Category",
-            items: [cat]
-        },
-        {
-            name: "Products",
-            items: [{
-                image: require('../assets/category.png'),
-                name: 'Product 1',
-                price: 10,
-                category: 'Category 1',
-            },
-            {
-                image: require('../assets/category.png'),
-                name: 'Product 2',
-                price: 10,
-                category: 'Category 2',
-            },]
-        }
-    ])
     return (
         <FlatList data={data} renderItem={({ item }) => {
+            console.log("item",item)
             return (
                 <View>
-                    <Text style={styles.title}>{item.name}</Text>
-                    {item.name === "Category" ? item.items.map((item) => {
+                   
+                    <Text style={styles.title}>{item?.name}</Text>
+                    {item.name === "Category" ? item?.items?.map((item) => {
                         return (
                             <View
                                 style={styles.item}>
-                                <Text style={{ flex: 1 }}>{item.name}</Text>
+                                <Text style={{ flex: 1 }}>{item?.name}</Text>
 
                             </View>
                         )
-                    }) : item.items.map((item) => {
+                    }) : item.items?.map((item) => {
                         return (
                             <View
                                 style={styles.item}>
                                 <View style={styles.row}>
                                     <View >
                                         <Image
-                                            source={item.image}
+                                            source={item?.image}
                                             style={styles.image}
                                             resizeMode="contain"
                                         />
@@ -73,7 +64,7 @@ const ListScreen = () => {
 }
 const styles = StyleSheet.create({
     title: {
-        fontSize: 20, fontWeight: '500', color: 'black', margin: 10
+        fontSize: 20, fontWeight: '500', color: 'black', margin: 10,
     },
     item: {
         margin: 10,
