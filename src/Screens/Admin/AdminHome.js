@@ -29,7 +29,7 @@ const AdminHome =({navigation}) =>{
                         }}
                     />
                         <Image
-                        source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
+                        //source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                         style={{height:20,width:20}}
                         >
                         </Image>
@@ -85,7 +85,7 @@ const AdminHome =({navigation}) =>{
                     }}>
                         
                         <Image
-                            source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
+                            //source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                             style={{height:150, width:200}}
                             
                         />
@@ -125,7 +125,7 @@ const AdminHome =({navigation}) =>{
                     }}>
                         
                         <Image
-                            source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
+                           // source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                             style={{height:150, width:200}}
                             
                         />
@@ -165,7 +165,7 @@ const AdminHome =({navigation}) =>{
                     }}>
                         
                         <Image
-                            source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
+                            //source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                             style={{height:150, width:200}}
                             
                         />
@@ -242,7 +242,7 @@ const AdminHome =({navigation}) =>{
                     }}>
                         
                         <Image
-                            source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
+                            //source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                             style={{height:150, width:200}}
                             
                         />
@@ -282,7 +282,7 @@ const AdminHome =({navigation}) =>{
                     }}>
                         
                         <Image
-                            source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
+                           // source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                             style={{height:150, width:200}}
                             
                         />
@@ -322,7 +322,7 @@ const AdminHome =({navigation}) =>{
                     }}>
                         
                         <Image
-                            source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
+                            //source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                             style={{height:150, width:200}}
                             
                         />

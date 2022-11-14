@@ -223,6 +223,7 @@ const AddProductScreen = () => {
                                 value={price}
                                 onChangeText={text => setPrice(text)}
                                 placeholder="Price"
+                                defaultValue='$'
                                 style={styles.input}
                             />
                             <TouchableOpacity onPress= {() => setIsCatOpen(isCatOpen ? false : true)} style={[styles.input,{justifyContent:'center',margin:0,marginHorizontal:10,borderBottomWidth:isCatOpen ? 0.1 :null}]}>

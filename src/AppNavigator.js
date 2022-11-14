@@ -98,11 +98,11 @@ const TabScreen = () => {
         //       }} />
         // </Tab.Navigator>
         <Drawer.Navigator useLegacyImplementation>
-        <Drawer.Screen name="List" component={ListScreen} />
-        <Drawer.Screen name="AddCategory" component={AddCategoryScreen} />
-        <Drawer.Screen name="AddProduct" component={AddProductScreen} />
+        <Drawer.Screen name="Home" component={ListScreen} />
+        <Drawer.Screen name="Categories" component={AddCategoryScreen} />
+        <Drawer.Screen name="Products" component={AddProductScreen} />
         <Drawer.Screen name="Search" component={SearchScreen} />
-        <Drawer.Screen name="Status" component={StatusScreen} />
+        <Drawer.Screen name="Orders" component={StatusScreen} />
         <Drawer.Screen name="Logout" component={Login}/>
       </Drawer.Navigator>
     )
