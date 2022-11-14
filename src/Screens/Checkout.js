@@ -40,6 +40,16 @@ const Checkout = () => {
     //     }
     // }
 
+    const storeData = async (cartData) => {
+        try {
+            const jsonValue = JSON.stringify(cartData)
+            await AsyncStorage.setItem('cData', jsonValue)
+            console.log('Data Inserted');
+        } catch (e) {
+            console.log('not run');
+        }
+    }
+
     const getTotal = () => {
         let tempTotal = 0;
         cartData.map((item) => {
@@ -56,6 +66,38 @@ const Checkout = () => {
                 style={{
                     flex: 1
                 }}>
+                <View
+                    style={{
+                        width: '100%',
+                        height: 70,
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        borderBottomWidth:.5
+                    }}
+                >
+                    <TouchableOpacity
+                        style={{
+                            width: 50,
+                            marginLeft: 10,
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                            borderWidth: .2,
+                            padding: 7,
+                            borderRadius: 10,
+                            backgroundColor: '#ebe9e4'
+                        }}
+                        onPress={() => {
+                            navigation.goBack();
+                        }}
+                    >
+                        <Image source={require('../images/back.png')}
+                            style={{
+                                width: 24,
+                                height: 24,
+                            }} />
+                    </TouchableOpacity>
+                </View>
                 <View>
                     <FlatList
                         data={cartData}
@@ -208,14 +250,15 @@ const Checkout = () => {
                     title={'Place Order'}
                     onPress={async () => {
                         // saveData(),
-                        dispatch(
-                            addOrder({
-                                items: cartData,
-                                total: getTotal(),
-                                address: selectedAddress,
-                            })),
+                        storeData(),
+                            dispatch(
+                                addOrder({
+                                    items: cartData,
+                                    total: getTotal(),
+                                    address: selectedAddress,
+                                })),
                             //console.log(cartData);
-                        navigation.navigate('OrderSucess');
+                            navigation.navigate('OrderSucess');
                     }}
                 />
             </View>
