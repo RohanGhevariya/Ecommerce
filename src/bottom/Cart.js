@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text,TouchableOpacity,Image } from 'react-native'
 import React, { useState } from 'react'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import CartItem from '../Common/CartItem';
@@ -27,6 +27,7 @@ const Cart = () => {
   return (
     <SafeAreaView style={{
       flex: 1,
+      marginTop:20
     }}>
       <View
         style={{

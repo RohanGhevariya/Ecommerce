@@ -8,13 +8,26 @@ const Orders = () => {
   const navigation = useNavigation();
   const cartData = useSelector(state => state.reducers);
   const orders = useSelector(state => state.OrderReducers);
+
+  const getData = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('cData')
+      return jsonValue != null ? JSON.parse(jsonValue) : null;
+    } catch (e) {
+      console.log('Failed to get Data');
+    }
+  }
+
+  console.log(getData());
+
   const getTotal = () => {
     let tempTotal = 0;
     cartData.map((item) => {
-        tempTotal = tempTotal + item.price;
+      tempTotal = tempTotal + item.price;
     });
     return tempTotal;
-};
+  };
+
   console.log(orders);
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -88,19 +101,23 @@ const Orders = () => {
                     );
                   })}
                   <View style={{
-                    alignContent:'space-between',
+                    alignContent: 'space-between',
                     flexDirection: 'row',
-                    marginBottom:10
+                    marginBottom: 10,
                   }}>
                     <Text style={{
-                      marginLeft:20
+                      marginLeft: 20,
+                      fontWeight: '600',
+                      fontSize: 15
                     }}>
-                      {'Total: ' + getTotal() }
+                      {'Total: ' + getTotal()}
                     </Text>
                     <Text style={{
-                      marginLeft:150,
+                      marginLeft: 150,
+                      fontWeight: '600',
+                      fontSize: 15
                     }}>
-                      {'Status: Pending'  }
+                      {'Status: Pending'}
                     </Text>
                   </View>
                 </View>

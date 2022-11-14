@@ -50,6 +50,7 @@ const Login = () => {
         }
         else {
             setModalVisible(false);
+            alert('Invalid Login and Password')
         }
     }
 
