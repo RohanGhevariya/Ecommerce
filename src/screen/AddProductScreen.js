@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
     View,
     Text,
@@ -14,20 +14,10 @@ import {
 import { addDoc, collection, doc, setDoc,onValue,ref, QuerySnapshot} from "firebase/firestore"; 
 import { db } from '../../firebase';
 import * as ImagePicker from 'expo-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddProductScreen = () => {
-    const [data, setData] = useState([{
-        image: {uri: "'https://picsum.photos/200/300'"},//require('./assets/snack-icon.png'),
-        name: 'Product 1',
-        price: 10,
-        category: 'Category 1',
-    },
-    {
-        image: {uri: "'https://picsum.photos/200/300'"},
-        name: 'Product 2',
-        price: 10,
-        category: 'Category 2',
-    },]);
+    const [data, setData] = useState([]);
     const [image, setImage] = useState('')
     const [price, setPrice] = useState("")
     const [name, setName] = useState("")
@@ -35,21 +25,51 @@ const AddProductScreen = () => {
     const [isCatOpen, setIsCatOpen] = useState(false)
     const [index, setIndex] = useState(null);
     const [open, setOpen] = useState(false)
-    const catList = ["Cat 1", "Cat 2", "Cat 3"]
-    function add(){
-        addDoc(collection(db, "Products"), {
-         // Pid: Pid,
-          name: name,
-          price: price,
-          category:category,
-          image:image
-        }).then(()=>{
-          //console.log('data added');
-    
-        }).catch((error) =>{
-          //console.log(error);
-        });
+    const catList = ["Hatchback", "Sedan", "SUV","Van"]
+
+
+  const add = async (cate) => {
+    const jsonValue = JSON.stringify(cate)
+    await AsyncStorage.setItem('Image', jsonValue);
+    await AsyncStorage.setItem('Name', jsonValue);
+    await AsyncStorage.setItem('Price', jsonValue);
+    await AsyncStorage.setItem('Category', jsonValue);
+    console.log("JSON",jsonValue)
+  }
+
+  const getData = async () => {
+    try {
+      const img = await AsyncStorage.getItem('Image')
+      const name = await AsyncStorage.getItem('Name')
+      const price = await AsyncStorage.getItem('Price')
+      const cat = await AsyncStorage.getItem('Category')
+      if(img && name && price && cat !== null) {
+        setData(JSON.parse(img && name &&price && cat))
+        console.log(img);
       }
+    } catch(e) {
+      // error reading value
+    }
+  }
+  
+  useEffect(()=>{
+    getData();
+  },[])
+
+    // function add(){
+    //     addDoc(collection(db, "Products"), {
+    //      // Pid: Pid,
+    //       name: name,
+    //       price: price,
+    //       category:category,
+    //       image:image
+    //     }).then(()=>{
+    //       //console.log('data added');
+    
+    // //     }).catch((error) =>{
+    // //       //console.log(error);
+    // //     });
+    // //   }
     const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -91,7 +111,7 @@ const AddProductScreen = () => {
             setPrice('')
             setImage('')
             setIndex(null)
-            add();
+            add(newCategory);
         } else {
             
             const updateData = data.map((item, i) => {
@@ -150,7 +170,7 @@ const AddProductScreen = () => {
                                         setImage(item.image)
                                         setName(item.name)
                                         setPrice(`${item.price}`)
-                                        setCategory(item.category)
+                                        setCategory(item?.category)
                                         setOpen(true)
                                     }}
                                 />
@@ -210,7 +230,7 @@ const AddProductScreen = () => {
                            
                             </TouchableOpacity>
                             {isCatOpen && <View style={{borderWidth: 0.5,borderTopWidth:0, paddingLeft: 5,marginHorizontal:20,marginTop:-2 }}>
-                              {catList.map((item) => {
+                              {catList?.map((item) => {
                               return (<Text style={{margin:10}} onPress = {() => {
                                 setIsCatOpen(false)
                                 setCategory(item)}}>{item}</Text>)

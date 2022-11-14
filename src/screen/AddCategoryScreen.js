@@ -23,6 +23,15 @@ const AddCategoryScreen = () => {
     await AsyncStorage.setItem('Categories', jsonValue);
     console.log("JSON",jsonValue)
   }
+const  clearAll = async () => {
+    try {
+      await AsyncStorage.clear()
+    } catch(e) {
+      // clear error
+    }
+  
+    console.log('Done.')
+  }
 
 
   const getData = async () => {
