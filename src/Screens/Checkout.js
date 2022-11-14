@@ -88,7 +88,7 @@ const Checkout = () => {
                             backgroundColor: '#ebe9e4'
                         }}
                         onPress={() => {
-                            navigation.goBack();
+                            navigation.navigate('Home');
                         }}
                     >
                         <Image source={require('../images/back.png')}
@@ -97,6 +97,11 @@ const Checkout = () => {
                                 height: 24,
                             }} />
                     </TouchableOpacity>
+                    <Text style={{
+                        marginRight:170,
+                        fontWeight:'500',
+                        fontSize:20
+                    }}>Checkout</Text>
                 </View>
                 <View>
                     <FlatList

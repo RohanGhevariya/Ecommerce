@@ -4,8 +4,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import Main from '../bottom/Main';
 import Cart from '../bottom/Cart';
 import Profile from '../bottom/Profile';
-import Search from '../bottom/Search';
 import { useSelector } from 'react-redux';
+import Orders from './Orders';
 
 const Home = () => {
 
@@ -18,9 +18,9 @@ const Home = () => {
             {selectedTab == 0 ? (
                 <Main />
             ) : selectedTab == 1 ? (
-                <Search />
-            ) : selectedTab == 2 ? (
                 <Cart />
+            ) : selectedTab == 2 ? (
+                <Orders />
             ) : (
                 <Profile />
             )
@@ -70,32 +70,11 @@ const Home = () => {
                     }}
                 >
                     <Image
-                        source={require('../images/search.png')}
-                        style={{
-                            width: 30,
-                            height: 30,
-                            tintColor: selectedTab == 1 ? '#000' : '#BeBeBe'
-                        }}
-                    />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                    style={{
-                        width: '20%',
-                        height: '100%',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                    }}
-                    onPress={() => {
-                        setSelectedTab(2);
-                    }}
-                >
-                    <Image
                         source={require('../images/cart.png')}
                         style={{
                             width: 30,
                             height: 30,
-                            tintColor: selectedTab == 2 ? '#000' : '#BeBeBe'
+                            tintColor: selectedTab == 1 ? '#000' : '#BeBeBe'
                         }}
                     />
 
@@ -117,6 +96,27 @@ const Home = () => {
                                 fontWeight: '600',
                             }}>{data.reducers.length}</Text>
                     </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={{
+                        width: '20%',
+                        height: '100%',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
+                    onPress={() => {
+                        setSelectedTab(2);
+                    }}
+                >
+                    <Image
+                        source={require('../images/sent.png')}
+                        style={{
+                            width: 30,
+                            height: 30,
+                            tintColor: selectedTab == 2 ? '#000' : '#BeBeBe'
+                        }}
+                    />
                 </TouchableOpacity>
 
                 <TouchableOpacity
