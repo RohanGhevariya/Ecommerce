@@ -65,7 +65,7 @@ const Categories =() =>{
                     }}>
                         
                         <Image
-                            source={require("/Users/rohanghevariya/Desktop/Ecommerce/src/images/camry.jpg")}
+                            source={require("/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg")}
                             style={{height:150, width:200}}
                             
                         />
@@ -142,7 +142,7 @@ const Categories =() =>{
                     }}>
                         
                         <Image
-                            source={require('/Users/rohanghevariya/Desktop/Ecommerce/src/images/camry.jpg')}
+                            source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                             style={{height:150, width:200}}
                             
                         />
@@ -218,7 +218,7 @@ const Categories =() =>{
                     }}>
                         
                         <Image
-                            source={require('/Users/rohanghevariya/Desktop/Ecommerce/src/images/camry.jpg')}
+                            source={require('/Users/raviradadiya/Desktop/Project_RN/Ecommerce/src/images/camry.jpeg')}
                             style={{height:150, width:200}}
                             
                         />
