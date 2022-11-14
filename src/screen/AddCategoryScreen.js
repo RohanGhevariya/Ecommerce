@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -9,30 +9,65 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { addDoc, collection, doc, setDoc,onValue,ref, QuerySnapshot} from "firebase/firestore"; 
 import { db } from '../../firebase';
 
 const AddCategoryScreen = () => {
-  const [data, setData] = useState([{name: 'Category 1'},{name: "Category 2"}]);
+  const [data, setData] = useState([]);
   const [category, setCategory] = useState('');
   const [index, setIndex] = useState(null);
-  function add(){
-    addDoc(collection(db, "Categories"), {
-      category:category,
-      
-    }).then(()=>{
-      //console.log('data added');
-
-    }).catch((error) =>{
-      //console.log(error);
-    });
+  
+  const add = async (cate) => {
+    const jsonValue = JSON.stringify(cate)
+    await AsyncStorage.setItem('Categories', jsonValue);
+    console.log("JSON",jsonValue)
   }
+const  clearAll = async () => {
+    try {
+      await AsyncStorage.clear()
+    } catch(e) {
+      // clear error
+    }
+  
+    console.log('Done.')
+  }
+
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('Categories')
+      if(value !== null) {
+        setData(JSON.parse(value))
+        console.log(value);
+      }
+    } catch(e) {
+      // error reading value
+    }
+  }
+  
+  useEffect(()=>{
+    getData();
+  },[])
+
+  
+  // function add(){
+  //   addDoc(collection(db, "Categories"), {
+  //     category:category,
+      
+  //   }).then(()=>{
+  //     //console.log('data added');
+
+  //   }).catch((error) =>{
+  //     //console.log(error);
+  //   });
+  // }
   function addCat(){
     if (index === null) {
       const newCategory = [...data, {name: category}];
       setData(newCategory);
       setCategory('');
-      add();
+      add(newCategory);
      
     } else {
       const updateData = data.map((item, i) => {
