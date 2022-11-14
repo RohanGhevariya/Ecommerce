@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FlatList, View, Text, Image, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+let cat =''
 
 const ListScreen = () => {
+    
+    useEffect(() => {
+      getData();
+    }, [])
+    const getData = async () => {
+      cat = await AsyncStorage.getItem('Categories');
+    }
     const [data, setData] = useState([
         {
             name: "Category",
-            items: [{ name: 'Category 1' }, { name: 'Category 2' }]
+            items: [cat]
         },
         {
             name: "Products",

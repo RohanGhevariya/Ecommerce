@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -9,24 +9,47 @@ import {
   SafeAreaView,
   StyleSheet,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { addDoc, collection, doc, setDoc,onValue,ref, QuerySnapshot} from "firebase/firestore"; 
 import { db } from '../../firebase';
 
 const AddCategoryScreen = () => {
-  const [data, setData] = useState([{name: 'Category 1'},{name: "Category 2"}]);
+  const [data, setData] = useState([]);
   const [category, setCategory] = useState('');
   const [index, setIndex] = useState(null);
-  function add(){
-    addDoc(collection(db, "Categories"), {
-      category:category,
-      
-    }).then(()=>{
-      //console.log('data added');
-
-    }).catch((error) =>{
-      //console.log(error);
-    });
+  const add = async () => {
+    const jsonValue = JSON.stringify(data)
+    await AsyncStorage.setItem('Categories', jsonValue);
   }
+
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('Categories')
+      if(value !== null) {
+        console.log(value);
+      }
+    } catch(e) {
+      // error reading value
+    }
+  }
+  
+  useEffect(()=>{
+    getData();
+  },[setCategory])
+
+  
+  // function add(){
+  //   addDoc(collection(db, "Categories"), {
+  //     category:category,
+      
+  //   }).then(()=>{
+  //     //console.log('data added');
+
+  //   }).catch((error) =>{
+  //     //console.log(error);
+  //   });
+  // }
   function addCat(){
     if (index === null) {
       const newCategory = [...data, {name: category}];

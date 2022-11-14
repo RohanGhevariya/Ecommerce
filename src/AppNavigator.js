@@ -103,6 +103,7 @@ const TabScreen = () => {
         <Drawer.Screen name="AddProduct" component={AddProductScreen} />
         <Drawer.Screen name="Search" component={SearchScreen} />
         <Drawer.Screen name="Status" component={StatusScreen} />
+        <Drawer.Screen name="Logout" component={Login}/>
       </Drawer.Navigator>
     )
 }
