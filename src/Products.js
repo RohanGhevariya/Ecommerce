@@ -18,19 +18,13 @@ export const Products = {
                     status: 'Pending',
                 },
                 {
-                    name: 'Mini Cooper 1',
+                    name: 'Mini Cooper 2',
                     price: 30000,
                     fuel: 'gas',
                     image: require('./images/mini.jpg'),
                     status: 'Pending',
                 },
-                {
-                    name: 'Golf GTI',
-                    price: 20000,
-                    fuel: 'gas',
-                    image: require('./images/golf.jpg'),
-                    status: 'Pending',
-                },
+                
             ],
         },
         {
@@ -50,20 +44,7 @@ export const Products = {
                     image: require('./images/camry.jpg'),
                     status: 'Pending',
                 },
-                {
-                    name: 'Accord',
-                    price: 30000,
-                    fuel: 'gas',
-                    image: require('./images/accord.jpg'),
-                    status: 'Pending',
-                },
-                {
-                    name: 'Camry',
-                    price: 20000,
-                    fuel: 'gas',
-                    image: require('./images/camry.jpg'),
-                    status: 'Pending',
-                },
+                
             ],
         },
         {
@@ -83,20 +64,7 @@ export const Products = {
                     image: require('./images/edge.jpg'),
                     status: 'Pending',
                 },
-                {
-                    name: 'Highlander',
-                    price: 30000,
-                    fuel: 'gas',
-                    image: require('./images/highlander.jpg'),
-                    status: 'Pending',
-                },
-                {
-                    name: 'Edge',
-                    price: 20000,
-                    fuel: 'gas',
-                    image: require('./images/edge.jpg'),
-                    status: 'Pending',
-                },
+                
             ],
         },
     ],

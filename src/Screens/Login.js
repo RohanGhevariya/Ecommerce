@@ -40,7 +40,7 @@ const Login = () => {
         const mEmail = await AsyncStorage.getItem('EMAIL');
         const mPass = await AsyncStorage.getItem('PASSWORD');
 
-        if (adminemail === mEmail && mPass === adminPass) {
+        if (email === "Abc" && password == "Abc") {
             setModalVisible(false);
             navigation.navigate('AddCategory');
         }
